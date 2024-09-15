@@ -25,38 +25,75 @@ public class ElementsTest {
         elements.click();
     }
 
+//    @Test
+//    @DisplayName("Тест на проверку текстовой формы")
+//    void textBoxValideTest () {
+//
+//        String  name = "TestName",
+//                email = "test@mail.com",
+//                currentAddress = "TestAddress",
+//                permanentAddress = "TestPermanent";
+//
+//        WebElement element = driver.findElement(By.className("text"));
+//        element.click();
+//        WebElement userNameBox = driver.findElement(By.id("userName"));
+//        userNameBox.sendKeys(name);
+//        WebElement emailBox = driver.findElement(By.id("userEmail"));
+//        emailBox.sendKeys(email);
+//        WebElement currentAddressBox = driver.findElement(By.id("currentAddress"));
+//        currentAddressBox.sendKeys(currentAddress);
+//        WebElement permanentAddressBox = driver.findElement(By.id("permanentAddress"));
+//        permanentAddressBox.sendKeys(permanentAddress);
+//        WebElement btn = driver.findElement(By.id("submit"));
+//        btn.click();
+//        String nameText = driver.findElement(By.xpath("//p[@id='name']")).getText();
+//        assertEquals(nameText, "Name:" + name);
+//        String emailText = driver.findElement(By.xpath("//p[@id='email']")).getText();
+//        assertEquals(emailText, "Email:" + email);
+//        String currentAddressText = driver.findElement(By.xpath("//p[@id='currentAddress']")).getText();
+//        assertEquals(currentAddressText, "Current Address :" + currentAddress);
+//        String permanentAddressText = driver.findElement(By.xpath("//p[@id='permanentAddress']")).getText();
+//        assertEquals(permanentAddressText, "Permananet Address :" + permanentAddress);
+//        driver.quit();
+//
+//    }
+
     @Test
     @DisplayName("Тест на проверку текстовой формы")
-    void textBoxValideTest () {
-
-        String  name = "TestName",
-                email = "test@mail.com",
-                currentAddress = "TestAddress",
-                permanentAddress = "TestPermanent";
+    void textBoxTest () {
 
         WebElement element = driver.findElement(By.className("text"));
         element.click();
         WebElement userNameBox = driver.findElement(By.id("userName"));
-        userNameBox.sendKeys(name);
         WebElement emailBox = driver.findElement(By.id("userEmail"));
-        emailBox.sendKeys(email);
         WebElement currentAddressBox = driver.findElement(By.id("currentAddress"));
-        currentAddressBox.sendKeys(currentAddress);
         WebElement permanentAddressBox = driver.findElement(By.id("permanentAddress"));
-        permanentAddressBox.sendKeys(permanentAddress);
+
+        String[] test_data =     {"TestName", "test@mail.com", "TestAddress", "TestPermanent"};
+        WebElement[] textBoxes = {userNameBox, emailBox, currentAddressBox, permanentAddressBox};
+
+        for (int i = 0; i < 4; i++) {
+            textBoxes[i].sendKeys(test_data[i]);
+        }
+
         WebElement btn = driver.findElement(By.id("submit"));
         btn.click();
         String nameText = driver.findElement(By.xpath("//p[@id='name']")).getText();
-        assertEquals(nameText, "Name:" + name);
         String emailText = driver.findElement(By.xpath("//p[@id='email']")).getText();
-        assertEquals(emailText, "Email:" + email);
         String currentAddressText = driver.findElement(By.xpath("//p[@id='currentAddress']")).getText();
-        assertEquals(currentAddressText, "Current Address :" + currentAddress);
         String permanentAddressText = driver.findElement(By.xpath("//p[@id='permanentAddress']")).getText();
-        assertEquals(permanentAddressText, "Permananet Address :" + permanentAddress);
+
+        String[] result =      {nameText, emailText, currentAddressText, permanentAddressText};
+        String[] result_Text = {"Name:", "Email:", "Current Address :", "Permananet Address :"};
+
+        for (int i = 0; i < 4; i++) {
+            assertEquals(result[i], result_Text[i] + test_data[i]);
+        }
+
         driver.quit();
 
     }
+
 
     @Test
     @DisplayName("Тест на проверку клика по кнопке")
