@@ -124,4 +124,21 @@ public class ElementsTest {
         driver.quit();
 
     }
+
+//      Не получается правильно найти xPath до выпадающего списка
+//    @Test
+//    @DisplayName("Тест на количество отображаемых строк")
+//    void rowsTest () {
+//
+//        driver.findElement(By.id("item-3")).click();
+//        int size = driver.findElements(By.className("rt-tr-group")).size();
+//        assertEquals(size, 10);
+//        driver.findElement(By.className("select-wrap -pageSizeOptions")).click();
+//        driver.findElement(By.xpath("//option[text()='5 rows']")).click();
+//        int newSize = driver.findElements(By.className("rt-tr-group")).size();
+//        assertEquals(size, 5);
+//        driver.quit();
+//
+//
+//    }
 }
